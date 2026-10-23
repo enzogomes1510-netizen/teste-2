@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Desafio das Flores</title>
+<style>
+:root{--green:#20d58a;--lime:#a4ef71;--white:#f6fbff;--glass:rgba(3,17,29,.82);--line:rgba(180,225,238,.34)}*{box-sizing:border-box}body{margin:0;color:var(--white);font-family:Inter,"Segoe UI",Arial,sans-serif;min-height:100vh;background:#071423 url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1920&q=85') center center/cover fixed no-repeat;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;background:linear-gradient(90deg,rgba(2,13,25,.38),rgba(2,13,25,.08) 55%,rgba(2,13,25,.1)),linear-gradient(0deg,rgba(2,10,20,.48),transparent 45%);pointer-events:none;z-index:-1}.topmusic{position:fixed;top:18px;left:20px;display:flex;align-items:center;gap:12px;padding:12px 17px;border:1px solid var(--line);border-radius:17px;background:rgba(2,18,31,.82);backdrop-filter:blur(12px);font-size:13px}.musicicon{font-size:23px;color:#53e2a2}.musicname{font-weight:650}.sub{font-size:11px;color:#b7c8d6;margin-top:3px}.sound{margin-left:14px;border:0;background:none;color:white;font-size:18px;cursor:pointer}.settings-corner{position:fixed;right:22px;top:18px}.iconbtn{border:1px solid var(--line);background:rgba(2,18,31,.82);color:white;border-radius:15px;width:54px;height:54px;font-size:25px;cursor:pointer;backdrop-filter:blur(12px)}.screen{display:none;min-height:100vh;position:relative;padding:90px 20px 40px;align-items:center;justify-content:center}.screen.active{display:flex;animation:fadein .35s ease}.hero{width:min(760px,95vw);text-align:center;margin:auto}.leaf{font-size:60px;filter:drop-shadow(0 5px 10px #0008);line-height:1}.brand{font-weight:1000;font-size:clamp(48px,7vw,90px);line-height:.88;letter-spacing:-3px;text-shadow:0 5px 14px #0008;margin:16px 0}.brand span:first-child{display:block;color:#f6fbff}.brand span:last-child{display:block;color:#51d878;font-style:italic;font-size:1.1em}.tagline{letter-spacing:4px;font-size:12px;line-height:2;margin:24px auto 40px;color:#e1edf4}.btn{border:1px solid rgba(206,235,244,.48);border-radius:19px;color:white;background:rgba(4,19,33,.76);padding:16px 23px;font-weight:750;letter-spacing:.6px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease;box-shadow:0 6px 18px #0002;backdrop-filter:blur(9px)}.btn:hover{transform:scale(1.065);box-shadow:0 0 24px #21d98a42;border-color:#54f0ad;background:rgba(12,47,56,.9)}.btn:active{transform:scale(.98)}.play{display:block;margin:0 auto 32px;min-width:min(390px,85vw);border:2px solid #21ee8c;border-radius:50px;padding:21px 30px;background:linear-gradient(110deg,#087f42eF,#24d765eF);font-size:29px;letter-spacing:2px;box-shadow:0 0 0 5px #0d3b2c66,0 12px 40px #0007}.play:hover{background:linear-gradient(110deg,#07994c,#3cf47a);box-shadow:0 0 32px #32e9898c;transform:scale(1.07)}.menulinks{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}.menulinks .btn{min-width:145px;padding:16px 18px;font-size:12px}.bottomquote{position:fixed;bottom:24px;left:36px;color:#dce8ef;font-style:italic;line-height:1.5;font-size:14px;text-shadow:0 2px 5px #000}.bottomquote span{display:block;color:#a9c2d1;font-size:12px}.panel{width:min(690px,96vw);padding:28px clamp(18px,4vw,42px);border:1px solid var(--line);border-radius:24px;background:rgba(2,16,27,.88);box-shadow:0 22px 70px #0008;backdrop-filter:blur(15px);text-align:center}.panel h2{margin:4px 0 14px;font-size:clamp(24px,3vw,34px)}.pill{display:inline-block;padding:6px 24px;border-radius:20px;background:linear-gradient(90deg,#19bd84,#41e2a0);color:#03291e;font-weight:850;font-size:13px}.question{font-size:clamp(18px,2vw,22px);line-height:1.45;font-weight:650;margin:12px 0 20px}.stats{position:fixed;top:19%;left:20px;display:grid;gap:14px;width:190px}.stat{padding:13px 16px;background:rgba(2,18,31,.82);border:1px solid #7eb1c544;border-radius:15px;backdrop-filter:blur(12px)}.stat small{display:block;color:#b9cbd6}.stat strong{font-size:20px;display:block;margin-top:3px}.answers{display:grid;gap:10px}.answer{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:12px 15px;border-radius:17px;border:1px solid var(--line);background:rgba(12,37,51,.88);color:white;font-size:15px;line-height:1.35;cursor:pointer;transition:transform .18s ease,background .18s,border-color .18s}.answer:hover{transform:scale(1.025);background:rgba(17,65,66,.96);border-color:#53e9ad}.letter{flex:0 0 42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#18885b,#07533f);font-size:20px;font-weight:850;box-shadow:0 4px 12px #0004}.answer.correct{border-color:#45e8a1;background:#11583e}.answer.wrong{border-color:#ff7e8d;background:#682d3a}.answer:disabled{cursor:default}.answer:disabled:hover{transform:none}.quizbottom{display:flex;justify-content:center;gap:12px;margin-top:18px;flex-wrap:wrap}.mainaction{background:linear-gradient(100deg,#07874d,#1ccf7b);border-color:#22f39a;color:white;min-width:230px;border-radius:40px;font-size:17px}.mainaction:disabled{opacity:.4;cursor:not-allowed;transform:none}.progress{height:6px;border-radius:8px;background:#24384a;overflow:hidden;margin:17px 0}.progress div{height:100%;background:linear-gradient(90deg,#14bc7d,#9ce968);transition:width .3s}.timer{color:#9df2c7;font-weight:800}.settingrow{display:flex;align-items:center;justify-content:space-between;gap:18px;text-align:left;padding:14px 0;border-bottom:1px solid #ffffff19}.settingrow select,.settingrow input{accent-color:#27d68d}.settingrow select{background:#0b2636;color:white;padding:8px;border-radius:8px;border:1px solid var(--line)}.hidden{display:none!important}.feedback{min-height:22px;font-weight:750;margin-top:12px}.endbuttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(max-width:850px){.stats{position:static;display:flex;justify-content:center;width:auto;margin:0 auto 14px;max-width:95vw}.stat{flex:1;min-width:0}.screen#quizScreen{display:none;padding-top:100px}.screen#quizScreen.active{display:block}.panel{margin:auto}.bottomquote{display:none}.topmusic{top:10px;left:10px}.settings-corner{top:10px;right:10px}.iconbtn{width:46px;height:46px}.question{font-size:18px}.answer{font-size:14px}}
+
+:root{--green:#456b35;--lime:#c8d99a;--white:#332d1d;--glass:rgba(248,237,204,.95);--line:rgba(92,72,37,.48)}
+body{color:#332d1d;background:#18351f url('fundo_floresta.jpg') center center/cover fixed no-repeat;font-family:"Trebuchet MS",Georgia,serif}
+body:before{background:linear-gradient(90deg,rgba(15,32,16,.2),rgba(15,32,16,.02) 55%,rgba(15,32,16,.16)),linear-gradient(0deg,rgba(12,27,14,.24),transparent 55%)}
+.topmusic,.iconbtn,.stat{background:#f4e7bf;border:2px solid #75613a;color:#332d1d;box-shadow:3px 5px 0 #1a2c1980;backdrop-filter:none}
+.musicicon{color:#456b35}.sub,.stat small{color:#675a3b}
+.brand{font-family:"Trebuchet MS",Georgia,serif;letter-spacing:-2px;text-shadow:2px 3px 0 #192f1880}
+.brand span:first-child{color:#fff1c7;-webkit-text-stroke:1px #4c4a27}.brand span:last-child{color:#d9e4a4;font-style:normal}
+.tagline{color:#fff0c6;letter-spacing:2px;text-shadow:1px 2px 4px #142412}
+.btn{color:#342c1c;background:#f2e3b9;border:2px solid #79643c;border-radius:8px;box-shadow:3px 5px 0 #1b2e1b8a;backdrop-filter:none;letter-spacing:0}
+.btn:hover{transform:translateY(-2px) rotate(-.3deg);box-shadow:4px 7px 0 #1b2e1b8a;background:#fff0c8;border-color:#4b6e35}
+.play,.mainaction{color:#fff5d9;background:#4b7138;border:2px solid #d3c18b;border-radius:12px;box-shadow:4px 6px 0 #1a2c1980;letter-spacing:0}
+.play:hover,.mainaction:hover{background:#5d8247;box-shadow:4px 7px 0 #1a2c1980}
+.panel{background:rgba(247,235,201,.97);border:3px solid #806a40;border-radius:8px;box-shadow:7px 9px 0 #142a1780;backdrop-filter:none;color:#332d1d}
+.panel h2{color:#3e5c30}.pill{background:#587741;color:#fff1ce;border-radius:5px}.question{color:#332d1d}
+.answer{color:#332d1d;background:#fff5d8;border:2px solid #c5b181;border-radius:8px}
+.answer:hover{background:#e9edc9;border-color:#637d43}.letter{background:#71874b;color:#fff8df;border-radius:6px;box-shadow:none}
+.answer.correct{background:#dcebc9;border-color:#4b793c}.answer.wrong{background:#f5d4c8;border-color:#b75d48}
+.feedback{color:#4b7138}.settingrow{border-bottom:1px dashed #b7a477}
+.settingrow input,.settingrow select{color:#332d1d;background:#fff5d8!important;border-color:#b7a477!important}
+.bottomquote{color:#fff0c9;text-shadow:1px 2px 4px #142412}
+body.no-motion *{animation:none!important;transition:none!important}
+@media(max-width:650px){.brand{font-size:clamp(44px,14vw,70px)}.topmusic{font-size:11px;padding:8px}.panel{padding:22px 15px}}
+
+/* O menu principal usa a ilustração inteira como interface; os hotspots invisíveis tornam as placas clicáveis. */
+body:before{display:none!important}
+body>.topmusic,body>.settings-corner{display:none!important}
+.screen#menuScreen.illustrated-menu{display:none;position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;min-height:0;margin:0;padding:0;overflow:hidden;align-items:stretch;justify-content:stretch;background:#18351f url('menu-ilustrado.png') center center/100% 100% no-repeat;z-index:5}
+.screen#menuScreen.illustrated-menu.active{display:block;animation:none}
+.image-hotspots{position:absolute;inset:0;width:100%;height:100%}
+.hotspot{position:absolute;display:block;padding:0;margin:0;border:0;border-radius:12px;background:transparent;cursor:pointer;box-shadow:none;backdrop-filter:none;min-width:0;transition:background .15s,box-shadow .15s;outline:none}
+.hotspot:hover,.hotspot:focus-visible{background:rgba(255,244,190,.16);box-shadow:inset 0 0 0 3px rgba(255,244,190,.72),0 0 18px rgba(255,235,160,.28)}
+.hotspot:active{background:rgba(76,104,47,.22);transform:scale(.985)}
+.play-hotspot{left:6.2%;top:24.7%;width:23%;height:10.2%}
+.multiplayer-hotspot{left:6.7%;top:36.2%;width:22.4%;height:10.2%}
+.settings-hotspot{left:6.8%;top:48.8%;width:23%;height:10.2%}
+.about-hotspot{left:6.8%;top:60%;width:22.4%;height:10.2%}
+.exit-hotspot{left:6.9%;top:71.2%;width:22.3%;height:10.2%}
+.sound-hotspot{left:2.8%;top:2.6%;width:4.5%;height:6.3%;border-radius:50%}
+.music-hotspot{left:14.1%;top:2.7%;width:2.5%;height:6.1%;border-radius:50%}
+.image-volume{position:absolute;left:5.9%;top:4.7%;width:7.4%;height:2.1%;opacity:0;cursor:ew-resize;z-index:2;margin:0;padding:0}
+@media(max-width:700px){.screen#menuScreen.illustrated-menu{background-size:100% 100%}.hotspot{border-radius:8px}.play-hotspot{left:6%;width:24%;}.multiplayer-hotspot,.about-hotspot,.exit-hotspot{width:24%;}}
+</style></head><body>
+<div class="topmusic"><span class="musicicon">♫</span><div><div class="musicname">Ambiente da Floresta</div><div class="sub" id="soundStatus">Sons da natureza desligados</div></div><button class="sound" id="soundToggle" title="Ligar/desligar som">▶</button></div><div class="settings-corner"><button class="iconbtn" onclick="showScreen('settingsScreen')" title="Configurações">⚙</button></div>
+<section class="screen active illustrated-menu" id="menuScreen" aria-label="Menu ilustrado do Desafio das Flores">
+  <div class="image-hotspots" aria-label="Botões interativos sobre a ilustração">
+    <button class="hotspot play-hotspot" onclick="startQuiz()" aria-label="Jogar" title="Jogar"></button>
+    <button class="hotspot multiplayer-hotspot" onclick="showScreen('multiplayerScreen')" aria-label="Multiplayer" title="Multiplayer"></button>
+    <button class="hotspot settings-hotspot" onclick="showScreen('settingsScreen')" aria-label="Configurações" title="Configurações"></button>
+    <button class="hotspot about-hotspot" onclick="showScreen('aboutScreen')" aria-label="Sobre" title="Sobre"></button>
+    <button class="hotspot exit-hotspot" onclick="quitGame()" aria-label="Sair" title="Sair"></button>
+    <button class="hotspot sound-hotspot" onclick="toggleSound(!soundOn)" aria-label="Ligar ou desligar sons da natureza" title="Som"></button>
+    <button class="hotspot music-hotspot" onclick="toggleSound(!soundOn)" aria-label="Alternar som ambiente" title="Som ambiente"></button>
+    <input class="image-volume" type="range" min="0" max="100" value="45" aria-label="Volume dos sons da natureza" title="Volume">
+  </div>
+</section>
+<section class="screen" id="quizScreen"><div class="stats"><div class="stat"><small>🌿 Pergunta</small><strong id="statQuestion">1 / 10</strong></div><div class="stat"><small>☆ Pontuação</small><strong id="statScore">0</strong></div><div class="stat"><small>◷ Tempo</small><strong class="timer" id="statTime">30 s</strong></div></div><div class="panel"><div class="pill" id="pill">PERGUNTA 1/10</div><div class="progress"><div id="progressFill" style="width:7.14%"></div></div><div class="question" id="questionText"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><div class="quizbottom"><button class="btn mainaction" id="nextBtn" onclick="nextQuestion()" disabled>Responder / Próxima　➜</button><button class="btn" onclick="confirmMenu()">⌂ Menu</button></div></div></section>
+<section class="screen" id="resultScreen"><div class="panel"><div class="leaf">🏆</div><h2>FIM DE JOGO!</h2><p style="font-size:28px;font-weight:850" id="resultScore">0 de 14 acertos</p><p id="resultText"></p><div class="endbuttons"><button class="btn mainaction" onclick="startQuiz()">↻ JOGAR NOVAMENTE</button><button class="btn" onclick="showScreen('menuScreen')">⌂ MENU</button></div></div></section>
+
+<section class="screen" id="multiplayerScreen">
+ <div class="panel">
+  <div class="leaf">🌳</div><h2>Desafio das Flores — Multiplayer</h2>
+  <p>Crie uma sala ou entre com o código de um amigo.</p>
+  <div class="settingrow"><label for="playerName">Seu nome</label><input id="playerName" maxlength="18" placeholder="Digite seu nome" value="Explorador" style="background:#0b2636;color:white;padding:10px;border-radius:8px;border:1px solid var(--line);width:55%"></div>
+  <div class="settingrow"><label for="playerAvatar">Seu avatar</label><select id="playerAvatar"><option>🌿</option><option>🐸</option><option>🌻</option><option>🦊</option><option>🌵</option><option>🐼</option><option>🍄</option><option>🌳</option><option>🦋</option></select></div>
+  <div class="endbuttons"><button class="btn mainaction" onclick="createRoom()">＋ CRIAR SALA</button></div>
+  <div class="settingrow"><label for="roomCode">Código da sala</label><input id="roomCode" maxlength="6" placeholder="Ex.: A1B2C3" style="text-transform:uppercase;background:#0b2636;color:white;padding:10px;border-radius:8px;border:1px solid var(--line);width:55%"></div>
+  <div class="endbuttons"><button class="btn" onclick="joinRoom()">ENTRAR NA SALA</button><button class="btn" onclick="showScreen('menuScreen')">VOLTAR</button></div>
+  <div id="roomStatus" class="feedback" aria-live="polite"></div>
+  <div id="roomLobby" class="hidden" style="text-align:left;margin-top:18px;padding:15px;border:1px solid var(--line);border-radius:15px">
+   <h3 style="margin:0 0 8px">🌱 Sala <span id="activeRoomCode"></span></h3>
+   <p id="roomNotice">Compartilhe o código com seus amigos.</p><div id="roomPlayers"></div>
+   <div class="endbuttons"><button class="btn mainaction" id="startRoomBtn" onclick="startRoomGame()">🌼 INICIAR PARTIDA</button></div><p style="font-size:12px;color:#675a3b">O anfitrião inicia a partida quando todos estiverem na sala.</p>
+  </div>
+ </div>
+</section>
+<section class="screen" id="settingsScreen"><div class="panel"><div class="leaf">⚙</div><h2>Configurações</h2><div class="settingrow"><label for="timeSelect">Tempo por pergunta</label><select id="timeSelect"><option value="15">15 segundos</option><option value="30" selected>30 segundos</option><option value="45">45 segundos</option><option value="60">60 segundos</option></select></div><div class="settingrow"><label for="motionToggle">Animações dos botões</label><input id="motionToggle" type="checkbox" checked></div><div class="settingrow"><label for="soundToggle2">Vento suave (som ambiente)</label><input id="soundToggle2" type="checkbox"></div><div class="endbuttons"><button class="btn mainaction" onclick="saveSettings()">SALVAR</button><button class="btn" onclick="showScreen('menuScreen')">VOLTAR AO MENU</button></div></div></section>
+<section class="screen" id="aboutScreen"><div class="panel"><div class="leaf">🌱</div><h2>Sobre o projeto</h2><p style="font-size:17px;line-height:1.7">Quiz de Botânica — Desafio da Floresta<br>Um jogo educativo para testar conhecimentos sobre o Reino Plantae.</p><p style="font-size:18px;color:#91f1bb;font-weight:750">Feito por Gomes</p><div class="endbuttons"><button class="btn mainaction" onclick="showScreen('menuScreen')">VOLTAR AO MENU</button></div></div></section>
+<div class="bottomquote" id="quote">“A natureza é o maior livro<br>de todos os tempos.”<span>— Inspirado pela natureza</span></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script><script src="firebase-config.js"></script>
+<script>
+const questions=[
+{q:'Qual característica define os organismos do Reino Plantae?',a:['Unicelulares e heterótrofos por absorção','Parede celular de quitina','Pluricelulares, eucariontes, fotossintetizantes e com parede de celulose','Locomoção ativa em alguma fase'],c:2},
+{q:'Por que as briófitas são consideradas plantas avasculares?',a:['Não possuem xilema e floema','Não fazem fotossíntese','Dependem de água salgada','Possuem sementes'],c:0},
+{q:'Samambaias e avencas pertencem a qual grupo?',a:['Briófitas','Gimnospermas','Angiospermas','Pteridófitas'],c:3},
+{q:'Qual inovação evolutiva surgiu nas gimnospermas em relação às pteridófitas?',a:['Fruto verdadeiro','Semente','Vasos condutores','Flor com pétalas'],c:1},
+{q:'Qual estrutura das angiospermas protege a semente e ajuda na dispersão?',a:['Estróbilo','Soro reprodutor','Fruto','Arquegônio'],c:2},
+{q:'Qual é a fase dominante no ciclo de vida das briófitas?',a:['Gametófito','Esporófito','Prótalo','Zigoesporo'],c:0},
+{q:'Qual é a fase dominante no ciclo de vida das pteridófitas, como as samambaias?',a:['Gametófito','Gametângio','Esporo','Esporófito'],c:3},
+{q:'Qual é a principal função do xilema?',a:['Transportar seiva elaborada','Transportar água e sais minerais das raízes','Proteger contra perda de água','Aumentar a espessura do caule'],c:1},
+{q:'O pinhão da araucária corresponde biologicamente a quê?',a:['Fruto verdadeiro','Raiz modificada','Semente nua','Esporângio haploide'],c:2},
+{q:'O que resulta da dupla fecundação nas angiospermas?',a:['Embrião diploide (2n) e endosperma triploide (3n)','Dois embriões idênticos','Esporófito haploide e gametófito triploide','Fruto e casca da semente'],c:0},
+{q:'O que permite a fecundação sem depender de água livre no ambiente?',a:['Folhas coriáceas','Raízes profundas','Grão de pólen sem polinizadores','Formação do tubo polínico'],c:3},
+{q:'Quais tecidos promovem o crescimento em comprimento de caules e raízes?',a:['Meristemas secundários','Meristemas apicais primários','Parênquima aquífero','Esclerênquima e colênquima'],c:1},
+{q:'Como os feixes vasculares ficam normalmente no caule das monocotiledôneas?',a:['Em um anel periférico','Formando um cilindro contínuo','Espalhados pelo parênquima fundamental','Estão ausentes'],c:2},
+{q:'O prótalo e o soro maduro de uma samambaia são, respectivamente:',a:['Haploide e diploide','Diploide e haploide','Ambos diploides','Ambos haploides'],c:0},
+
+{q:'Qual é a principal função das flores nas angiospermas?',a:['Absorver água do solo','Realizar a reprodução sexuada','Transportar seiva','Fixar a planta ao solo'],c:1},
+{q:'Qual parte da flor geralmente recebe o pólen durante a polinização?',a:['Estigma','Ovário','Antera','Sépala'],c:0},
+{q:'Em qual estrutura da flor os grãos de pólen são produzidos?',a:['Estigma','Pétala','Antera','Óvulo'],c:2},
+{q:'Após a fecundação, o ovário da flor geralmente se desenvolve em:',a:['Raiz','Fruto','Folha','Caule'],c:1},
+{q:'Qual é a função principal das pétalas coloridas?',a:['Atrair polinizadores','Absorver sais minerais','Produzir raízes','Transportar água'],c:0},
+{q:'Como se chama a transferência do pólen da antera até o estigma?',a:['Germinação','Transpiração','Polinização','Fototropismo'],c:2},
+{q:'Qual agente pode realizar a polinização de flores?',a:['Somente o vento','Insetos, aves, morcegos ou vento','Apenas minhocas','Somente a chuva'],c:1},
+{q:'O que as plantas utilizam na fotossíntese para produzir açúcares?',a:['Luz, água e gás carbônico','Oxigênio e areia','Somente sais minerais','Apenas oxigênio'],c:0},
+{q:'Qual pigmento verde capta energia luminosa na fotossíntese?',a:['Hemoglobina','Melanina','Clorofila','Queratina'],c:2},
+{q:'Qual estrutura vegetal absorve água e sais minerais do solo?',a:['Flor','Raiz','Fruto','Pétala'],c:1},
+{q:'Qual é uma função importante do caule?',a:['Produzir pólen em todas as plantas','Substituir a luz solar','Sustentar folhas e transportar substâncias','Transformar flores em sementes diretamente'],c:2},
+{q:'Qual estrutura das plantas costuma realizar a maior parte da fotossíntese?',a:['Folha','Raiz principal','Semente','Casca do fruto'],c:0},
+{q:'Por que muitas plantas perdem água pelas folhas?',a:['Por meio da transpiração pelos estômatos','Pela produção de pólen','Pela fecundação','Pelo crescimento das sementes'],c:0},
+{q:'O que são estômatos?',a:['Tipos de sementes','Pequenas aberturas que regulam trocas gasosas','Raízes subterrâneas','Estruturas que formam pétalas'],c:1},
+{q:'Qual grupo vegetal não produz flores nem sementes e se reproduz por esporos?',a:['Angiospermas','Gimnospermas','Pteridófitas','Plantas com frutos'],c:2},
+{q:'Musgos geralmente vivem melhor em locais úmidos porque:',a:['Precisam de água para a fecundação','Possuem flores frágeis','Produzem frutos aquáticos','Não realizam fotossíntese'],c:0},
+{q:'Qual alternativa descreve as gimnospermas?',a:['Produzem frutos carnudos','Têm sementes não envolvidas por frutos verdadeiros','Não possuem tecidos vasculares','Sempre produzem flores vistosas'],c:1},
+{q:'Qual grupo inclui roseiras, girassóis e orquídeas?',a:['Briófitas','Pteridófitas','Gimnospermas','Angiospermas'],c:3},
+{q:'O que é germinação?',a:['A abertura dos estômatos','O desenvolvimento de uma nova planta a partir da semente ou embrião','A queda das pétalas','A produção de pólen'],c:1},
+{q:'Por que frutos como o coco ou a amora são importantes para muitas plantas?',a:['Ajudam a proteger ou dispersar sementes','Fazem a fotossíntese no lugar das folhas','Absorvem água do solo','Substituem as raízes'],c:0},
+{q:'Qual é uma diferença comum entre monocotiledôneas e eudicotiledôneas?',a:['Monocotiledôneas não fazem fotossíntese','Eudicotiledôneas não têm raízes','O número de cotilédones no embrião','A presença de clorofila apenas nas eudicotiledôneas'],c:2},
+{q:'O floema transporta principalmente:',a:['Água e sais minerais das raízes','Açúcares e outras substâncias orgânicas','Pólen para o estigma','Oxigênio para as sementes'],c:1},
+{q:'O xilema transporta principalmente:',a:['Água e sais minerais','Apenas açúcares','Pólen e óvulos','Sementes maduras'],c:0},
+{q:'Qual processo faz uma planta crescer em direção à luz?',a:['Hibernação','Fototropismo','Polinização','Fecundação'],c:1},
+{q:'Qual é a função do fruto em muitas angiospermas?',a:['Proteger as sementes e auxiliar na dispersão','Produzir raízes','Absorver luz para toda a planta','Substituir o caule'],c:0},
+
+{q:'Qual flor é conhecida por acompanhar o movimento aparente do sol quando jovem?',a:['Girassol','Tulipa','Orquídea','Rosa'],c:0},
+{q:'Qual parte da flor contém os óvulos?',a:['Pétala','Ovário','Antera','Estigma'],c:1},
+{q:'O néctar produzido por algumas flores serve principalmente para:',a:['Atrair animais polinizadores','Impedir a germinação','Transportar água pelo caule','Formar a parede celular'],c:0},
+{q:'Qual destes animais pode atuar como polinizador?',a:['Abelha','Minhoca exclusivamente','Caracol exclusivamente','Peixe de água doce'],c:0},
+{q:'O que é uma planta nativa?',a:['Uma planta originária de determinada região','Uma planta que só cresce em vasos','Uma planta sempre medicinal','Uma planta sem raízes'],c:0},
+{q:'Qual destas é uma adaptação comum de plantas de ambientes secos?',a:['Folhas reduzidas ou transformadas em espinhos','Folhas sempre muito largas e finas','Raízes que não absorvem água','Ausência completa de cutícula'],c:0},
+{q:'Qual é a função da cutícula na superfície de muitas folhas?',a:['Reduzir a perda de água','Produzir sementes diretamente','Atrair polinizadores pelo néctar','Absorver minerais do solo'],c:0},
+{q:'Como se chama a perda de vapor de água pelas partes aéreas da planta?',a:['Transpiração','Fecundação','Germinação','Polinização'],c:0},
+{q:'O que é fotossíntese?',a:['Processo que usa energia luminosa para produzir matéria orgânica','Processo de absorver solo pelas folhas','Transformação de flores em frutos sem fecundação','Transporte de pólen pelo vento'],c:0},
+{q:'Qual gás é liberado como produto da fotossíntese?',a:['Oxigênio','Nitrogênio','Metano','Hidrogênio'],c:0},
+{q:'Em qual organela ocorre a fotossíntese nas células vegetais?',a:['Cloroplasto','Mitocôndria apenas','Núcleo','Ribossomo'],c:0},
+{q:'Qual é a função dos pelos absorventes das raízes?',a:['Aumentar a absorção de água e sais minerais','Produzir pétalas','Transportar pólen','Formar frutos'],c:0},
+{q:'O que são plantas carnívoras?',a:['Plantas que capturam pequenos organismos para obter nutrientes','Plantas que não fazem fotossíntese','Plantas que se alimentam apenas de pedras','Plantas sem raízes em todos os casos'],c:0},
+{q:'A mimosa-sensitiva é conhecida por:',a:['Dobrar folhas quando tocada','Produzir pinhões','Não possuir folhas','Viver apenas debaixo d’água'],c:0},
+{q:'Qual parte da planta geralmente fixa a planta ao solo?',a:['Raiz','Pétala','Estigma','Fruto'],c:0},
+{q:'O que é dispersão de sementes?',a:['O espalhamento das sementes para novos locais','A produção de néctar na flor','A absorção de água pelas raízes','O crescimento do caule em direção à luz'],c:0},
+{q:'Qual destas formas pode dispersar sementes?',a:['Vento, água ou animais','Somente a luz solar','Apenas a fotossíntese','Somente o xilema'],c:0},
+{q:'Qual é a função das sépalas em muitas flores?',a:['Proteger o botão floral antes de abrir','Produzir seiva elaborada','Absorver água do solo','Formar o embrião diretamente'],c:0},
+{q:'Uma flor completa geralmente apresenta:',a:['Sépalas, pétalas, estames e carpelo(s)','Somente raízes e folhas','Apenas frutos e sementes','Somente caule e xilema'],c:0},
+{q:'O que é uma espécie invasora em um ecossistema?',a:['Espécie introduzida que se espalha e pode causar impactos','Qualquer planta com flores grandes','Toda planta nativa da região','Uma planta que não produz sementes'],c:0},
+{q:'Por que a diversidade de flores é importante para os ecossistemas?',a:['Oferece recursos a diferentes polinizadores e ajuda a manter relações ecológicas','Impede todos os insetos de visitar plantas','Elimina a necessidade de água','Faz todas as plantas produzirem frutos idênticos'],c:0},
+{q:'Qual parte da flor geralmente produz o pólen?',a:['Estigma','Antera','Ovário','Sépalas'],c:1},
+{q:'Qual é a função principal das raízes?',a:['Absorver água e sais minerais e fixar a planta','Produzir pólen','Formar pétalas','Atrair polinizadores'],c:0},
+{q:'Em qual organela ocorre a fotossíntese?',a:['Mitocôndria','Núcleo','Cloroplasto','Ribossomo'],c:2},
+{q:'Qual gás a planta absorve na fotossíntese?',a:['Oxigênio','Nitrogênio','Hidrogênio','Dióxido de carbono'],c:3},
+{q:'Qual gás é liberado durante a fotossíntese?',a:['Oxigênio','Metano','Hélio','Amônia'],c:0},
+{q:'Qual é a função das pétalas em muitas flores?',a:['Absorver sais do solo','Atrair polinizadores','Transportar seiva','Produzir raízes'],c:1},
+{q:'Qual parte da flor recebe o pólen?',a:['Estigma','Filete','Sépala','Pedúnculo'],c:0},
+{q:'O que é polinização?',a:['A absorção de água pelas raízes','A queda das folhas','A transferência de pólen até a parte receptora da flor','A formação de clorofila'],c:2},
+{q:'Qual tecido transporta açúcares produzidos na fotossíntese?',a:['Xilema','Floema','Epiderme','Súber'],c:1},
+{q:'Qual estrutura costuma proteger o botão floral antes de abrir?',a:['Sépala','Estigma','Antera','Semente'],c:0},
+{q:'Como se chama a perda de vapor de água pelas folhas?',a:['Germinação','Polinização','Transpiração','Fecundação'],c:2},
+{q:'O que uma semente geralmente contém?',a:['Apenas água','Embrião e reserva nutritiva','Somente pétalas','Um fruto completo'],c:1},
+{q:'Qual condição costuma ser necessária para a germinação?',a:['Ausência total de água','Somente luz intensa','Água, oxigênio e temperatura adequada','Solo congelado'],c:2},
+{q:'Qual grupo de plantas produz flores e frutos?',a:['Briófitas','Pteridófitas','Gimnospermas','Angiospermas'],c:3},
+{q:'Musgos se reproduzem por meio de...',a:['Esporos','Frutos','Pinhões','Flores'],c:0},
+{q:'Qual é uma função do caule?',a:['Produzir sempre sementes','Sustentar folhas e transportar substâncias','Absorver luz pelas raízes','Fazer a polinização sozinho'],c:1},
+{q:'O que é germinação?',a:['A abertura de uma flor adulta','A dispersão do pólen','O desenvolvimento inicial do embrião da semente','A queda do fruto'],c:2},
+{q:'Qual destes é um polinizador comum?',a:['Abelha','Minhoca subterrânea em todos os casos','Peixe de água doce','Fungo decompositor'],c:0},
+{q:'Por que muitas plantas têm folhas largas?',a:['Para impedir a fotossíntese','Para aumentar a captação de luz','Para não absorver água','Para substituir as raízes'],c:1},
+{q:'O que acontece na fecundação das plantas com flores?',a:['O pólen vira uma folha','As raízes viram sementes','Gametas se unem formando o zigoto','A planta deixa de respirar'],c:2},
+{q:'Qual é a principal função da clorofila?',a:['Dar cheiro às flores','Armazenar água nas raízes','Digerir insetos em todas as plantas','Absorver energia luminosa'],c:3},
+{q:'Qual destas estruturas faz parte do sistema reprodutor feminino da flor?',a:['Pistilo','Filete isolado','Raiz principal','Xilema'],c:0},
+{q:'O que diferencia as gimnospermas das angiospermas?',a:['Gimnospermas não têm vasos','Angiospermas não fazem fotossíntese','Gimnospermas não formam frutos que envolvam suas sementes','Angiospermas não têm raízes'],c:2},
+{q:'Qual é a função dos estômatos?',a:['Formar sementes diretamente','Regular trocas gasosas e perda de vapor de água','Produzir pólen','Prender a planta ao solo'],c:1}
+];
+let index=0,score=0,answered=false,seconds=30,timer=null,questionOrder=questions.slice(),soundOn=false,audioCtx=null,windSource=null,windGain=null,windFilter=null,windLfo=null,windLfoGain=null;const letters=['A','B','C','D'];
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));if(id!=='quizScreen')stopTimer();document.getElementById('quote').style.display=id==='menuScreen'?'block':'none'}
+function startQuiz(){questionOrder=shuffleQuestions(questions).slice(0,10);index=0;score=0;renderQuestion();showScreen('quizScreen')}
+function shuffleQuestions(list){const copy=list.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
+function renderQuestion(){stopTimer();answered=false;seconds=Number(document.getElementById('timeSelect').value)||30;const q=questionOrder[index];document.getElementById('statQuestion').textContent=`${index+1} / ${questionOrder.length}`;document.getElementById('statScore').textContent=score;document.getElementById('statTime').textContent=seconds+' s';document.getElementById('pill').textContent=`PERGUNTA ${index+1}/${questionOrder.length}`;document.getElementById('progressFill').style.width=((index+1)/questionOrder.length*100)+'%';document.getElementById('questionText').textContent=q.q;document.getElementById('feedback').textContent='';document.getElementById('nextBtn').disabled=true;document.getElementById('nextBtn').textContent='Responder / Próxima　➜';const box=document.getElementById('answers');box.innerHTML='';q.a.forEach((text,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${letters[i]}</span><span>${text}</span>`;b.onclick=()=>answer(i);box.appendChild(b)});startTimer()}
+function startTimer(){document.getElementById('statTime').textContent=seconds+' s';timer=setInterval(()=>{seconds--;document.getElementById('statTime').textContent=seconds+' s';if(seconds<=0){stopTimer();if(!answered){answer(-1)}}},1000)}function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+
+function playEffect(kind){
+ if(!soundOn)return;
+ try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();
+ const now=audioCtx.currentTime;const notes=kind==='correct'?[660,880]:kind==='wrong'?[220,165]:[523,659,784,1046];
+ notes.forEach((hz,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=kind==='wrong'?'triangle':'sine';o.frequency.setValueAtTime(hz,now+i*.11);g.gain.setValueAtTime(.0001,now+i*.11);g.gain.exponentialRampToValueAtTime(kind==='win'?.16:.09,now+i*.11+.025);g.gain.exponentialRampToValueAtTime(.0001,now+i*.11+.22);o.connect(g);g.connect(audioCtx.destination);o.start(now+i*.11);o.stop(now+i*.11+.24)});
+ }catch(e){}
+}
+
+function answer(choice){if(answered)return;answered=true;stopTimer();const q=questionOrder[index],buttons=[...document.querySelectorAll('.answer')];buttons.forEach(b=>b.disabled=true);if(choice===q.c){playEffect("correct");score++;buttons[choice].classList.add('correct');document.getElementById('feedback').textContent='✓ CORRETO! Muito bem!';document.getElementById('feedback').style.color='#69efae'}else{playEffect('wrong');if(choice>=0)buttons[choice].classList.add('wrong');buttons[q.c].classList.add('correct');document.getElementById('feedback').textContent=choice<0?`⏱ Tempo esgotado! Resposta: ${letters[q.c]}.`:`✗ Resposta correta: ${letters[q.c]}.`;document.getElementById('feedback').style.color='#ff9ca9'}document.getElementById('statScore').textContent=score;document.getElementById('nextBtn').disabled=false;document.getElementById('nextBtn').textContent=index===questionOrder.length-1?'VER RESULTADO　🏆':'PRÓXIMA　➜'}
+function nextQuestion(){if(!answered)return;if(index<questionOrder.length-1){index++;renderQuestion()}else{showResult()}}
+function showResult(){stopTimer();if(score===questionOrder.length)playEffect("win");const pct=Math.round(score/questionOrder.length*100);document.getElementById('resultScore').textContent=`${score} de ${questionOrder.length} acertos`;document.getElementById('resultText').textContent=pct>=85?`Incrível! Você acertou ${pct}% e domina Botânica!`:pct>=60?`Bom trabalho! Você acertou ${pct}%. Continue aprendendo!`:`Você acertou ${pct}%. Continue praticando — cada tentativa ensina algo!`;showScreen('resultScreen')}
+function confirmMenu(){if(confirm('Voltar ao menu? O progresso desta partida será perdido.'))showScreen('menuScreen')}
+function saveSettings(){document.body.classList.toggle('no-motion',!document.getElementById('motionToggle').checked);document.getElementById('soundToggle2').checked=soundOn;showScreen('menuScreen')}
+function quitGame(){if(confirm('Deseja sair do quiz?')){showScreen('menuScreen');alert('Você já pode fechar esta janela do navegador.')}}
+document.getElementById('soundToggle').onclick=()=>toggleSound(!soundOn);document.getElementById('soundToggle2').onchange=e=>toggleSound(e.target.checked);
+const imageVolume=document.querySelector('.image-volume');if(imageVolume)imageVolume.addEventListener('input',e=>{const v=Number(e.target.value)/100;if(windGain&&audioCtx)windGain.gain.setTargetAtTime(v*.14,audioCtx.currentTime,.05);});
+function toggleSound(on){
+ soundOn=on;document.getElementById('soundToggle2').checked=on;document.getElementById('soundToggle').textContent=on?'Ⅱ':'▶';document.getElementById('soundStatus').textContent=on?'Natureza ligada':'Sons da natureza desligados';
+ if(on){try{
+  audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended')audioCtx.resume();
+  if(!windSource){
+   // Ruído filtrado e modulado lentamente para criar vento suave, sem música ou tons artificiais.
+   const length=audioCtx.sampleRate*8,buffer=audioCtx.createBuffer(1,length,audioCtx.sampleRate),data=buffer.getChannelData(0);
+   let filtered=0;for(let i=0;i<length;i++){const white=Math.random()*2-1;filtered=filtered*.965+white*.035;data[i]=filtered*2.8;}
+   windSource=audioCtx.createBufferSource();windSource.buffer=buffer;windSource.loop=true;
+   windFilter=audioCtx.createBiquadFilter();windFilter.type='lowpass';windFilter.frequency.value=520;windFilter.Q.value=.45;
+   windGain=audioCtx.createGain();windGain.gain.value=.0001;
+   windLfo=audioCtx.createOscillator();windLfo.type='sine';windLfo.frequency.value=.075;
+   windLfoGain=audioCtx.createGain();windLfoGain.gain.value=.018;
+   windLfo.connect(windLfoGain);windLfoGain.connect(windGain.gain);
+   windSource.connect(windFilter);windFilter.connect(windGain);windGain.connect(audioCtx.destination);
+   windSource.start();windLfo.start();windGain.gain.setTargetAtTime(.025,audioCtx.currentTime,.8);
+  }else{windGain.gain.setTargetAtTime(.025,audioCtx.currentTime,.5);}
+ }catch(e){document.getElementById('soundStatus').textContent='Som indisponível neste navegador';}
+ }else if(audioCtx&&windGain){windGain.gain.setTargetAtTime(.0001,audioCtx.currentTime,.15);}
+}
+
+
+// Multiplayer em tempo real via Firebase Realtime Database.
+// Configure firebase-config.js conforme o README antes de publicar.
+let db=null,roomRef=null,roomCodeActive='',isRoomHost=false,playerId='p'+Math.random().toString(36).slice(2,10),roomUnsub=null;
+function firebaseReady(){try{if(!window.FIREBASE_CONFIG||!window.FIREBASE_CONFIG.apiKey||window.FIREBASE_CONFIG.apiKey==='COLOQUE_SUA_API_KEY'){document.getElementById('roomStatus').textContent='Falta configurar o Firebase. Veja o README do projeto.';return false}if(!firebase.apps.length)firebase.initializeApp(window.FIREBASE_CONFIG);db=firebase.database();return true}catch(e){document.getElementById('roomStatus').textContent='Não foi possível conectar ao multiplayer: '+e.message;return false}}
+function getPlayer(){return {id:playerId,name:(document.getElementById('playerName').value||'Explorador').trim().slice(0,18),avatar:document.getElementById('playerAvatar').value||'🌿',score:0,joinedAt:Date.now()};}
+function makeCode(){return Math.random().toString(36).slice(2,8).toUpperCase()}
+function createRoom(){
+ if(!firebaseReady())return;
+ const code=makeCode(),player=getPlayer();roomCodeActive=code;isRoomHost=true;roomRef=db.ref('flowerRooms/'+code);
+ roomRef.set({code,hostId:playerId,status:'waiting',players:{[playerId]:player},questionOrder:[],questionIndex:0,createdAt:Date.now()})
+ .then(()=>openRoom(code,true)).catch(e=>document.getElementById('roomStatus').textContent='Erro ao criar sala: '+e.message);
+}
+function joinRoom(){
+ if(!firebaseReady())return;
+ const code=(document.getElementById('roomCode').value||'').trim().toUpperCase();
+ if(!code){document.getElementById('roomStatus').textContent='Digite o código da sala.';return}
+ const ref=db.ref('flowerRooms/'+code),player=getPlayer();
+ ref.once('value').then(snap=>{if(!snap.exists()){document.getElementById('roomStatus').textContent='Sala não encontrada. Confira o código.';return}
+ const room=snap.val();if(room.status==='finished'){document.getElementById('roomStatus').textContent='Essa partida já terminou.';return}
+ roomCodeActive=code;isRoomHost=room.hostId===playerId;roomRef=ref;
+ return ref.child('players/'+playerId).set(player).then(()=>openRoom(code,isRoomHost));
+ }).catch(e=>document.getElementById('roomStatus').textContent='Erro ao entrar: '+e.message);
+}
+function openRoom(code,host){
+ roomCodeActive=code;isRoomHost=host;roomRef=db.ref('flowerRooms/'+code);
+ document.getElementById('roomCode').value=code;document.getElementById('activeRoomCode').textContent=code;
+ document.getElementById('roomStatus').textContent=host?'Sala criada! Compartilhe o código com seus amigos.':'Você entrou na sala!';
+ document.getElementById('roomNotice').textContent='Compartilhe este código: '+code;
+ document.getElementById('roomLobby').classList.remove('hidden');
+ document.getElementById('startRoomBtn').classList.toggle('hidden',!host);
+ if(roomUnsub)roomRef.off('value',roomUnsub);
+ roomUnsub=snap=>{const room=snap.val();if(!room)return;renderRoomPlayersFromData(room.players||{});if(room.status==='playing'&&room.questionOrder){document.getElementById('roomStatus').textContent='Partida em andamento! Pergunta '+(room.questionIndex+1)+' de '+room.questionOrder.length;document.getElementById('roomNotice').textContent='Todos jogam na mesma partida. Código: '+code;}};
+ roomRef.on('value',roomUnsub);
+}
+function renderRoomPlayersFromData(players){const box=document.getElementById('roomPlayers');box.innerHTML='';Object.values(players).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)).forEach(p=>{const row=document.createElement('div');row.style.cssText='display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed #b7a477';const avatar=document.createElement('span');avatar.style.fontSize='24px';avatar.textContent=p.avatar||'🌼';const name=document.createElement('strong');name.textContent=(p.name||'Explorador')+(p.id===playerId?' (você)':'')+' — '+(p.score||0)+' pts';row.append(avatar,name);box.appendChild(row)})}
+function startRoomGame(){
+ if(!isRoomHost||!roomRef){document.getElementById('roomStatus').textContent='Somente o anfitrião pode iniciar.';return}
+ const order=questions.map((_,i)=>i).sort(()=>Math.random()-.5);
+ roomRef.once('value').then(s=>{const room=s.val();if(!room)return;const updates={status:'playing',questionOrder:order,questionIndex:0};Object.keys(room.players||{}).forEach(id=>updates['players/'+id+'/score']=0);return roomRef.update(updates)}).then(()=>{document.getElementById('roomStatus').textContent='Partida iniciada! A sincronização de perguntas compartilhadas está em configuração.'}).catch(e=>document.getElementById('roomStatus').textContent='Erro ao iniciar: '+e.message);
+}
+
+document.addEventListener('keydown',e=>{if(document.getElementById('quizScreen').classList.contains('active')){const n=Number(e.key);if(n>=1&&n<=4)answer(n-1);if(e.key==='Enter'&&!document.getElementById('nextBtn').disabled)nextQuestion()}});
+</script></body></html>
